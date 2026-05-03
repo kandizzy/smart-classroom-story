@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
   <div class="container">
     <p class="lede">
       What if a classroom was a multi-agent system? Not a room with computers in it &mdash; a room whose computation
-      was distributed across cameras, code, and the people who walk in. Eleven students, two instructors,
+      was distributed across cameras, code, and the people who walk in. Thirteen students, two instructors,
       six cameras, one event bus. Over a semester, we built it. This is what one class looks like when the
       room is paying attention.
     </p>
@@ -63,13 +63,13 @@
       The room is empty; V-JEPA confirms it; the brain settles into a pre-arrival posture &mdash; ambient
       music up, captions off, sensing quiet.
     </p>
-    <p>
+    <p id="smart-stage">
       Gordon's <strong>Smart Stage</strong> absorbs much of what was originally scoped as a separate room-mode
       project: ambience that adapts to occupancy, music that knows the difference between an empty
       room and a room filling up. Yuxuan's and Seren's earlier explorations of those room-mode
       transitions live inside the orchestrator now. The brain has multiple authors.
     </p>
-    <p>
+    <p id="forest">
       In the corner, Sophie's <strong>Forest in the Classroom</strong> seeds a faint generative landscape on the
       back projection &mdash; a visual ambience that will respond to voices later in the session. Right now it
       is barely there. A room reading itself.
@@ -137,7 +137,7 @@
       <strong>Smart Stage</strong> doing what it was designed for &mdash; coordinating capture, voice synthesis, and
       ambient state from a single state machine, ~990 lines of Python on a Raspberry Pi.
     </p>
-    <p>
+    <p id="focus-beam">
       Feifey's <strong>Focus Beam</strong> stands by. When the instructor points at a region of the projected slide,
       MediaPipe reads the gesture and an overlay dims everything else. The beam doesn't ask for
       attention; it removes the friction of finding it.
@@ -159,12 +159,12 @@
       <img src="assets/diagrams/feifey-focus-beam-diagram.jpg" alt="Diagram of Focus Beam: gesture detection feeding a slide region map and a dimming overlay.">
       <figcaption>Fig. 02 &nbsp;·&nbsp; Focus Beam &mdash; speech and gesture into slide regions. Diagram by Feifey Wang.</figcaption>
     </figure>
-    <p>
+    <p id="assignment-tracker">
       Behind both, Shuyang's <strong>Assignment Tracker</strong> listens to the captions and the whiteboard for
       anything that sounds like a deadline or a task &mdash; an ambient archivist. Smart Stage's voice
       assistant stays muted until invoked.
     </p>
-    <p>
+    <p id="sleep-detection">
       One attention tool waits, opt-in. Kevin and Mingyue's <strong>Sleep Detection</strong> is silent unless
       a student opts in. The whitepaper makes a strong claim that the room should have a place to
       hold context, but the class also made a strong claim that the room shouldn't watch people
@@ -214,14 +214,14 @@
       </video>
       <figcaption>Vid. 01 &nbsp;·&nbsp; Sleep Detection demo. Kevin &amp; Mingyue.</figcaption>
     </figure>
-    <p>
+    <p id="tony">
       Tony &mdash; Ramon and Shuyang's classroom agent &mdash; sits in the back, watching with YOLO and
       object detection, ready to respond if the room shifts emotional register. Tony is the project
       that most resists the simulator's tidy categories. <em>The point is not to make the user be part of
       Tony but for Tony to be part of you.</em> Tony's first build had the channels swapped &mdash; reds for
       blues &mdash; and the heat sensor reads 84°F constantly. The body of the agent is its own debug log.
     </p>
-    <p>
+    <p id="grammar-coach">
       Yuxuan's <strong>English Communication Coach</strong>, called Lumi, holds quiet on a desk, ready for Q&amp;A.
       The original design was real-time correction; class feedback re-cast it as <em>private, delayed,
       gentle</em>. The shift came from one Monday discussion.
@@ -281,7 +281,7 @@
       </p>
       <cite>&mdash; Kathy, JuJu, and Seren, retro</cite>
     </blockquote>
-    <p>
+    <p id="gus">
       The trio &mdash; Kathy, JuJu, Seren &mdash; built a two-location system: a Viam Rover 2 with a camera at
       Kathy's apartment, segmentation in the classroom, voice triggered by a phrase ("hey buddy!")
       that students could call out. The interaction is small on purpose: a low-stakes social beat in
@@ -322,7 +322,7 @@
   <div class="container">
     <p>
       V-JEPA's classifier trips over to <em>group work</em>; Smart Stage shifts ambience accordingly. The
-      whiteboard becomes the room's center of gravity. Phil's Timer scopes the activity &mdash; this is its
+      whiteboard becomes the room's center of gravity. Phil's <span id="timer">Timer</span> scopes the activity &mdash; this is its
       most natural use, and the moment it became something more than a personal tool.
     </p>
     <blockquote>
@@ -353,7 +353,7 @@
       <figcaption>Vid. 03 &nbsp;·&nbsp; Timer in use &mdash; flipping arUco tags to set the countdown. Phil Cote.</figcaption>
     </figure>
     <p>
-      Darren's <strong>Imprint</strong> reads handwriting from any surface in the room and makes notes from it &mdash;
+      Darren's <strong id="imprint">Imprint</strong> reads handwriting from any surface in the room and makes notes from it &mdash;
       the kind of capability that only matters if it is genuinely surface-agnostic. Tony, in this
       phase, shifts posture from observer to embodied helper. The same agent the room watched in
       lecture is now something you can ask a question of. Same body, different role.
@@ -393,7 +393,7 @@
       system listens without being seen &mdash; and the room either follows or doesn't. Most rooms don't
       say which.
     </p>
-    <p>
+    <p id="nodcheck">
       Kathy's <strong>NodCheck</strong> exists because of one of those moments.
     </p>
     <blockquote>
@@ -522,19 +522,19 @@
       <div class="credits-block">
         <h3>Students</h3>
         <ul>
-          <li>Darren Chia &mdash; Imprint</li>
-          <li>Feifey Wang &mdash; Focus Beam</li>
-          <li>Gordon Cheng &mdash; Smart Stage</li>
-          <li>JuJu Kim &mdash; Gus Mode</li>
-          <li>Kathy Choi &mdash; NodCheck, Gus Mode</li>
-          <li>Kevin &mdash; Sleep Detection</li>
-          <li>Mingyue &mdash; Sleep Detection</li>
-          <li>Phil Cote &mdash; Timer</li>
-          <li>Ramon Naula &mdash; Tony</li>
-          <li>Seren Kim &mdash; Gus Mode</li>
-          <li>Shuyang Tian &mdash; Tony, Assignment Tracker</li>
-          <li>Sophie Lee &mdash; Forest in the Classroom</li>
-          <li>Yuxuan Chen &mdash; English Communication Coach</li>
+          <li>Darren Chia &mdash; <a href="#imprint">Imprint</a></li>
+          <li>Feifey Wang &mdash; <a href="#focus-beam">Focus Beam</a></li>
+          <li>Gordon Cheng &mdash; <a href="#smart-stage">Smart Stage</a></li>
+          <li>JuJu Kim &mdash; <a href="#gus">Gus Mode</a></li>
+          <li>Kathy Choi &mdash; <a href="#nodcheck">NodCheck</a>, <a href="#gus">Gus Mode</a></li>
+          <li>Kevin Shi &mdash; <a href="#sleep-detection">Sleep Detection</a></li>
+          <li>Mingyue Zhou &mdash; <a href="#sleep-detection">Sleep Detection</a></li>
+          <li>Phil Cote &mdash; <a href="#timer">Timer</a></li>
+          <li>Ramon Naula &mdash; <a href="#tony">Tony</a></li>
+          <li>Seren Kim &mdash; <a href="#gus">Gus Mode</a></li>
+          <li>Shuyang Tian &mdash; <a href="#tony">Tony</a>, <a href="#assignment-tracker">Assignment Tracker</a></li>
+          <li>Sophie Lee &mdash; <a href="#forest">Forest in the Classroom</a></li>
+          <li>Yuxuan Chen &mdash; <a href="#grammar-coach">English Communication Coach</a></li>
         </ul>
       </div>
 
@@ -555,6 +555,23 @@
           <li><a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/diagrams/network-diagram.html">Network diagram</a></li>
           <li><a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/references.md">Bibliography</a></li>
           <li>Class Timeline simulator (in source repo, <code>classroom-api/</code>)</li>
+        </ul>
+      </div>
+
+      <div class="credits-block credits-wide">
+        <h3>Jump to a project</h3>
+        <ul class="project-jump">
+          <li><a href="#smart-stage">Smart Stage</a></li>
+          <li><a href="#forest">Forest</a></li>
+          <li><a href="#focus-beam">Focus Beam</a></li>
+          <li><a href="#assignment-tracker">Assignment Tracker</a></li>
+          <li><a href="#sleep-detection">Sleep Detection</a></li>
+          <li><a href="#tony">Tony</a></li>
+          <li><a href="#grammar-coach">English Communication Coach</a></li>
+          <li><a href="#gus">Gus Mode</a></li>
+          <li><a href="#timer">Timer</a></li>
+          <li><a href="#imprint">Imprint</a></li>
+          <li><a href="#nodcheck">NodCheck</a></li>
         </ul>
       </div>
 

@@ -21,6 +21,20 @@
 
 html { scroll-behavior: smooth; }
 
+/* Anchor targets: extra space above so the section title isn't crammed against the top */
+:target {
+  scroll-margin-top: 32px;
+}
+:target::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 14px;
+  background: var(--ink);
+  vertical-align: middle;
+}
+
 body {
   background: var(--paper);
   color: var(--ink);
@@ -372,6 +386,23 @@ blockquote cite {
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 500;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.project-jump {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px 24px;
+}
+.project-jump li {
+  font-size: 13px;
+}
+.project-jump a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   border-bottom: 1px solid var(--ink-faint);
 }
 
