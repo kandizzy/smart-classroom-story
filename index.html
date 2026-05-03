@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -165,24 +165,55 @@
       assistant stays muted until invoked.
     </p>
     <p>
-      Two attention tools wait, opt-in. <strong>NodCheck</strong>, Kathy's gesture-driven comprehension polling,
-      is silent unless a student opens it. Sleep detection is silent unless a student opts in. The
-      whitepaper makes a strong claim that the room should have a place to hold context, but the
-      class also made a strong claim that the room shouldn't watch people who haven't asked to be
-      watched. Lecture is where those two principles negotiate.
+      One attention tool waits, opt-in. Kevin and Mingyue's <strong>Sleep Detection</strong> is silent unless
+      a student opts in. The whitepaper makes a strong claim that the room should have a place to
+      hold context, but the class also made a strong claim that the room shouldn't watch people
+      who haven't asked to be watched. Lecture is where those two principles negotiate.
+    </p>
+    <p>
+      The design decision behind Sleep Detection came from a real moment Kevin had in a guest talk.
     </p>
     <blockquote>
       <p>
-        I had a feeling people were lost from all the blank stares.
+        I didn't want the professor to call me out. If they noticed me and said my name, it would
+        feel embarrassing in front of everyone. At the same time, I did wish someone could have
+        helped me in that moment. If a friend sitting next to me had quietly nudged me &mdash; I think
+        that would have been the best kind of reminder, something small and supportive, without
+        drawing attention.
       </p>
-      <cite>&mdash; Carrie (instructor), thanking Kathy for the head shake that triggered NodCheck's design</cite>
+      <cite>&mdash; Kevin, on the moment that became the project</cite>
     </blockquote>
     <p>
-      NodCheck started as a lesson-on-ambient-tech where nobody was following along until Kathy
-      visibly shook her head. The irony was the point. There should be a low-risk way for a student
-      to say <em>I'm lost</em> &mdash; the smallest possible signal, made legible. What broke: the trigger button
-      doesn't currently live anywhere useful for either party to reach.
+      The system the team built routes the camera's read of a drowsy student not to the instructor,
+      but to a friend in the room &mdash; a quiet ping, not a call-out. The interaction is deliberately
+      lateral, peer to peer, and the tone of voice matters as much as the detection. When Kevin tested
+      it on a friend, Maggie said it felt <em>"less aggressive than calling someone out"</em> &mdash; and then
+      surfaced the tension that the project hasn't resolved.
     </p>
+    <blockquote>
+      <p>
+        Yeah&hellip; a little. Because the camera is still watching you the whole time. Even if the
+        response is private, that part doesn't really go away.
+      </p>
+      <cite>&mdash; Maggie, when asked if it still felt like surveillance</cite>
+    </blockquote>
+    <p>
+      That's the unfinished work. The response is private; the watching is not. Opt-in is the
+      simplest answer the class arrived at, and it's the same answer NodCheck reaches by a different
+      path. The room can offer support without imposing it &mdash; but only if the people in the room
+      have said yes first.
+    </p>
+    <figure class="figure">
+      <img src="assets/diagrams/kevin-mingyue-sleep-detection-diagram.jpg" alt="Hand-drawn diagram of Sleep Detection: camera reads drowsy state, system pings a designated friend, friend taps the sleeper.">
+      <figcaption>Fig. 04 &nbsp;·&nbsp; Sleep Detection &mdash; camera read, lateral notification, peer nudge. Diagram by Kevin &amp; Mingyue.</figcaption>
+    </figure>
+    <figure class="figure">
+      <video controls muted preload="metadata" playsinline>
+        <source src="assets/videos/kevin-mingyue-sleep-detection-demo.mp4" type="video/mp4">
+        Your browser does not support inline video. <a href="assets/videos/kevin-mingyue-sleep-detection-demo.mp4">Download the demo &rarr;</a>
+      </video>
+      <figcaption>Vid. 01 &nbsp;·&nbsp; Sleep Detection demo. Kevin &amp; Mingyue.</figcaption>
+    </figure>
     <p>
       Tony &mdash; Ramon and Shuyang's classroom agent &mdash; sits in the back, watching with YOLO and
       object detection, ready to respond if the room shifts emotional register. Tony is the project
@@ -213,6 +244,13 @@
     <figure class="figure">
       <img src="assets/diagrams/yuxuan-english-communication-coach-diagram.jpeg" alt="Diagram of English Communication Coach: input through review through private feedback cards.">
       <figcaption>Fig. 03 &nbsp;·&nbsp; English Communication Coach &mdash; transcript in, gentle private feedback out. Diagram by Yuxuan Chen.</figcaption>
+    </figure>
+    <figure class="figure">
+      <video controls muted preload="metadata" playsinline>
+        <source src="assets/videos/yuxuan-english-communication-coach-demo.mp4" type="video/mp4">
+        Your browser does not support inline video. <a href="assets/videos/yuxuan-english-communication-coach-demo.mp4">Download the demo &rarr;</a>
+      </video>
+      <figcaption>Vid. 02 &nbsp;·&nbsp; English Communication Coach prototype walkthrough. Yuxuan Chen.</figcaption>
     </figure>
   </div>
 </section>
@@ -257,7 +295,7 @@
     </p>
     <figure class="figure figure-wide">
       <img src="assets/diagrams/juju-virtual-gus-diagram.png" alt="Diagram: Viam Rover camera stream, segmentation pipeline, projector to wall.">
-      <figcaption>Fig. 04 &nbsp;·&nbsp; The Gus pipeline. Viam Rover livestream, segmentation, projection. Diagram by JuJu Kim.</figcaption>
+      <figcaption>Fig. 05 &nbsp;·&nbsp; The Gus pipeline. Viam Rover livestream, segmentation, projection. Diagram by JuJu Kim.</figcaption>
     </figure>
     <p>
       Phil's <strong>Timer</strong> activates here too &mdash; it scopes the break. Magnetic arUco markers stuck to a foamcore
@@ -305,7 +343,14 @@
     </p>
     <figure class="figure">
       <img src="assets/diagrams/phil-timer-diagram.png" alt="Diagram of Timer: arUco tags, OAK-D detection, state machine, web display.">
-      <figcaption>Fig. 05 &nbsp;·&nbsp; Timer &mdash; arUco tags into countdown state. Diagram by Phil Cote.</figcaption>
+      <figcaption>Fig. 06 &nbsp;·&nbsp; Timer &mdash; arUco tags into countdown state. Diagram by Phil Cote.</figcaption>
+    </figure>
+    <figure class="figure">
+      <video controls muted preload="metadata" playsinline>
+        <source src="assets/videos/phil-timer-demo.mp4" type="video/mp4">
+        Your browser does not support inline video. <a href="assets/videos/phil-timer-demo.mp4">Download the demo &rarr;</a>
+      </video>
+      <figcaption>Vid. 03 &nbsp;·&nbsp; Timer in use &mdash; flipping arUco tags to set the countdown. Phil Cote.</figcaption>
     </figure>
     <p>
       Darren's <strong>Imprint</strong> reads handwriting from any surface in the room and makes notes from it &mdash;
@@ -343,10 +388,41 @@
       class seated reads identically as <em>lecture</em> from the camera angle.)
     </p>
     <p>
-      <strong>NodCheck</strong> opens here for the version of the room that wants it: a short comprehension window
-      tied to a question, accumulating yes/shakes on the instructor's screen. It remains opt-in. The
-      version Kathy wants &mdash; multiple students, displayed on the instructor's device, button placed
-      somewhere both parties can reach &mdash; is the clearest path forward.
+      Tech demos are a particular kind of attention test. The instructor is walking the room through
+      how something works &mdash; how to set up Node, how a sensor pipeline fits together, how an ambient
+      system listens without being seen &mdash; and the room either follows or doesn't. Most rooms don't
+      say which.
+    </p>
+    <p>
+      Kathy's <strong>NodCheck</strong> exists because of one of those moments.
+    </p>
+    <blockquote>
+      <p>
+        She scans the room, notices all the blank stares, and asks if it makes sense. Nobody says
+        anything. I vigorously shake my head no. She immediately perks up and genuinely thanks me for
+        being honest. <em>"I had a feeling people were lost from all the blank stares!"</em>
+      </p>
+      <cite>&mdash; Kathy, on the moment that became NodCheck</cite>
+    </blockquote>
+    <p>
+      The lesson Carrie was teaching was, with quiet irony, on ambient and invisible tech &mdash; sensing
+      systems that read the room without being seen. The room was illegible to her until one
+      person made a single explicit gesture. That's the design problem in one frame: there should
+      be a low-risk way for a student to say <em>I'm lost</em>, and the smallest possible signal &mdash; a
+      head shake &mdash; should be enough to make it legible.
+    </p>
+    <p>
+      In Tech Demo posture, NodCheck opens a short comprehension window tied to a question and
+      accumulates yes-nods and head-shakes on the instructor's screen. The interaction is simple
+      and physical &mdash; you don't have to interrupt, raise your hand, or admit anything in front of
+      the room. You just nod or don't.
+    </p>
+    <p>
+      What broke is the staging. The trigger button doesn't currently live anywhere useful for
+      either students or instructor to reach. Multi-user sensing isn't built yet. The version Kathy
+      wants &mdash; multiple students at once, totals displayed on the instructor's device, the trigger
+      placed somewhere both parties can find &mdash; is the clearest path forward, and it's the version
+      the Tech Demo phase actually needs.
     </p>
   </div>
 </section>
@@ -451,6 +527,8 @@
           <li>Gordon Cheng &mdash; Smart Stage</li>
           <li>JuJu Kim &mdash; Gus Mode</li>
           <li>Kathy Choi &mdash; NodCheck, Gus Mode</li>
+          <li>Kevin &mdash; Sleep Detection</li>
+          <li>Mingyue &mdash; Sleep Detection</li>
           <li>Phil Cote &mdash; Timer</li>
           <li>Ramon Naula &mdash; Tony</li>
           <li>Seren Kim &mdash; Gus Mode</li>

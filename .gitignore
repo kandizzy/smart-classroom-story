@@ -1,0 +1,12 @@
+# Working / staging area for raw student submissions before processing.
+# Anything here is pre-processing — full-resolution diagrams, uncompressed
+# videos, PDFs to be transcribed. Processed assets go in assets/ and ARE
+# committed.
+tmp/
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/

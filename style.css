@@ -256,11 +256,17 @@ blockquote cite {
   margin: 3em 0;
 }
 
-.figure img {
+.figure img,
+.figure video {
   display: block;
   width: 100%;
   height: auto;
   border: 2px solid var(--ink);
+  background: var(--ink);
+}
+
+.figure video {
+  outline: none;
 }
 
 .figure-wide {
