@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Smart Classroom · A Day in the Life of a Multi-Agent Room</title>
+<meta name="description" content="A scrollable storyboard companion to the Smart Classroom whitepaper. One class session, traced phase by phase, told through the projects that activate the room.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="meta">
+      <span class="meta-label">Smart Objects · Spring 2026</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-label">SVA MFA Interaction Design</span>
+    </div>
+    <h1 class="masthead-title">The Smart Classroom</h1>
+    <p class="masthead-sub">A day in the life of a multi-agent room.</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ─── HERO ────────────────────────────────────────────────────── -->
+<section class="chapter chapter-hero">
+  <div class="container">
+    <p class="lede">
+      What if a classroom was a multi-agent system? Not a room with computers in it &mdash; a room whose computation
+      was distributed across cameras, code, and the people who walk in. Eleven students, two instructors,
+      six cameras, one event bus. Over a semester, we built it. This is what one class looks like when the
+      room is paying attention.
+    </p>
+    <p class="lede-runner">
+      Read it as a clock. The chapters below trace a single Monday session, 4:45&thinsp;PM to 7:50&thinsp;PM.
+      Each phase introduces the projects that activate during it. The story isn't ten projects in a row;
+      it's one room over three hours.
+    </p>
+  </div>
+</section>
+
+<!-- ─── PHASE: PRE-ARRIVAL ───────────────────────────────────────── -->
+<section class="phase-card">
+  <div class="container">
+    <div class="phase-meta">
+      <span class="phase-time">16:45</span>
+      <span class="phase-num">Phase 01 of 07</span>
+    </div>
+    <h2 class="phase-title">Pre-Arrival</h2>
+    <p class="phase-sub">The room warms up before anyone is in it.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="container">
+    <p>
+      The room comes online before the people. <strong>Smart Stage</strong>, the room's brain, boots on a Raspberry&nbsp;Pi&nbsp;5,
+      polls the V-JEPA classifier sitting on a GPU machine across the network, and reads the schedule.
+      The room is empty; V-JEPA confirms it; the brain settles into a pre-arrival posture &mdash; ambient
+      music up, captions off, sensing quiet.
+    </p>
+    <p>
+      Gordon's <strong>Smart Stage</strong> absorbs much of what was originally scoped as a separate room-mode
+      project: ambience that adapts to occupancy, music that knows the difference between an empty
+      room and a room filling up. Yuxuan's and Seren's earlier explorations of those room-mode
+      transitions live inside the orchestrator now. The brain has multiple authors.
+    </p>
+    <p>
+      In the corner, Sophie's <strong>Forest in the Classroom</strong> seeds a faint generative landscape on the
+      back projection &mdash; a visual ambience that will respond to voices later in the session. Right now it
+      is barely there. A room reading itself.
+    </p>
+    <p>
+      <strong>Gus</strong>, the dog, is online but not yet projected. The Viam Rover at Kathy's apartment has booted, the
+      camera has handshake. Gus's appearance is scheduled for break, not now. The system knows to wait.
+    </p>
+    <p class="aside">
+      <em>What's missing from this state:</em> Smart Stage will fail gracefully if the V-JEPA server becomes
+      unreachable, holding music state and continuing other operations. We never tested this on a real outage.
+    </p>
+  </div>
+</section>
+
+<!-- ─── PHASE: ARRIVAL ──────────────────────────────────────────── -->
+<section class="phase-card">
+  <div class="container">
+    <div class="phase-meta">
+      <span class="phase-time">17:00</span>
+      <span class="phase-num">Phase 02 of 07</span>
+    </div>
+    <h2 class="phase-title">Arrival</h2>
+    <p class="phase-sub">Bodies in the frame.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="container">
+    <p>
+      Three ceiling-mounted PoE cameras &mdash; left, right, and center-back of the room &mdash; produce the bird's-eye
+      view that Gordon's <strong>overhead dashboard</strong> stitches into one canvas. YOLO6-nano runs on the
+      Pi; blue calibration markers anchor the geometry. As students enter, dots appear on a flat plan of
+      the room. The room knows there are people in it now.
+    </p>
+    <p>
+      Music fades. V-JEPA, polled every ten seconds, shifts its prediction from <em>empty</em> to <em>group&nbsp;work</em>
+      and then, as people sit, to <em>lecture</em>. The brain confirms lecture mode. The room hasn't been told
+      what to do; it has been told what it is.
+    </p>
+    <figure class="figure figure-wide">
+      <img src="assets/artifacts/virtual-gus-projector02.jpg" alt="Projector setup for Gus presence in the classroom.">
+      <figcaption>Fig. 01 &nbsp;·&nbsp; Projection rig for the Gus feed, set up before class. Projector and segmented stream are wired ahead of break.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ─── PHASE: LECTURE ──────────────────────────────────────────── -->
+<section class="phase-card">
+  <div class="container">
+    <div class="phase-meta">
+      <span class="phase-time">17:10</span>
+      <span class="phase-num">Phase 03 of 07</span>
+    </div>
+    <h2 class="phase-title">Lecture</h2>
+    <p class="phase-sub">Capture, attention, support &mdash; opt-in only.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="container">
+    <p>
+      The brain pivots to lecture posture. Sherpa-onnx streaming ASR turns the instructor's voice into
+      live captions, fed to a wall display and to a Discord channel as a rolling summary. This is
+      <strong>Smart Stage</strong> doing what it was designed for &mdash; coordinating capture, voice synthesis, and
+      ambient state from a single state machine, ~990 lines of Python on a Raspberry Pi.
+    </p>
+    <p>
+      Feifey's <strong>Focus Beam</strong> stands by. When the instructor points at a region of the projected slide,
+      MediaPipe reads the gesture and an overlay dims everything else. The beam doesn't ask for
+      attention; it removes the friction of finding it.
+    </p>
+    <blockquote>
+      <p>
+        Then I move my hand again, but a bit faster this time, and the highlight follows, slightly lagging.
+        After a few seconds, he tilts his head and asks if I was controlling that.
+      </p>
+      <cite>&mdash; Feifey, on Jason watching Focus Beam for the first time</cite>
+    </blockquote>
+    <p>
+      The interaction sits in an interesting place &mdash; foreground attention, but background initiative.
+      The user doesn't know whether the system is responding to them or just performing. That ambiguity
+      is the tell. Feifey hasn't yet resolved when "pointing intentionally" is distinct from "gesturing
+      naturally"; the line between control and ambient assistance is the unfinished work.
+    </p>
+    <figure class="figure">
+      <img src="assets/diagrams/feifey-focus-beam-diagram.jpg" alt="Diagram of Focus Beam: gesture detection feeding a slide region map and a dimming overlay.">
+      <figcaption>Fig. 02 &nbsp;·&nbsp; Focus Beam &mdash; speech and gesture into slide regions. Diagram by Feifey Wang.</figcaption>
+    </figure>
+    <p>
+      Behind both, Shuyang's <strong>Assignment Tracker</strong> listens to the captions and the whiteboard for
+      anything that sounds like a deadline or a task &mdash; an ambient archivist. Smart Stage's voice
+      assistant stays muted until invoked.
+    </p>
+    <p>
+      Two attention tools wait, opt-in. <strong>NodCheck</strong>, Kathy's gesture-driven comprehension polling,
+      is silent unless a student opens it. Sleep detection is silent unless a student opts in. The
+      whitepaper makes a strong claim that the room should have a place to hold context, but the
+      class also made a strong claim that the room shouldn't watch people who haven't asked to be
+      watched. Lecture is where those two principles negotiate.
+    </p>
+    <blockquote>
+      <p>
+        I had a feeling people were lost from all the blank stares.
+      </p>
+      <cite>&mdash; Carrie (instructor), thanking Kathy for the head shake that triggered NodCheck's design</cite>
+    </blockquote>
+    <p>
+      NodCheck started as a lesson-on-ambient-tech where nobody was following along until Kathy
+      visibly shook her head. The irony was the point. There should be a low-risk way for a student
+      to say <em>I'm lost</em> &mdash; the smallest possible signal, made legible. What broke: the trigger button
+      doesn't currently live anywhere useful for either party to reach.
+    </p>
+    <p>
+      Tony &mdash; Ramon and Shuyang's classroom agent &mdash; sits in the back, watching with YOLO and
+      object detection, ready to respond if the room shifts emotional register. Tony is the project
+      that most resists the simulator's tidy categories. <em>The point is not to make the user be part of
+      Tony but for Tony to be part of you.</em> Tony's first build had the channels swapped &mdash; reds for
+      blues &mdash; and the heat sensor reads 84°F constantly. The body of the agent is its own debug log.
+    </p>
+    <p>
+      Yuxuan's <strong>English Communication Coach</strong>, called Lumi, holds quiet on a desk, ready for Q&amp;A.
+      The original design was real-time correction; class feedback re-cast it as <em>private, delayed,
+      gentle</em>. The shift came from one Monday discussion.
+    </p>
+    <blockquote>
+      <p>
+        She said she did not want the feedback to feel like, "you made a mistake here. Fix it." She
+        suggested that the system should sound more encouraging, like, "this is not bad, but have
+        you considered this?"
+      </p>
+      <cite>&mdash; Yuxuan, on Kathy's redesign of the feedback layer</cite>
+    </blockquote>
+    <p>
+      Lumi catches a small set of common ESL patterns &mdash; <em>more good</em> becoming <em>better</em>,
+      <em>informations</em> becoming <em>information</em> &mdash; and offers them as suggestions <em>after</em> the speaking
+      moment, not during. The biggest unsolved problem is the transcript itself: browser speech
+      recognition is unreliable, and so the prototype now treats the transcript as a draft for the
+      student to review before analysis.
+    </p>
+    <figure class="figure">
+      <img src="assets/diagrams/yuxuan-english-communication-coach-diagram.jpeg" alt="Diagram of English Communication Coach: input through review through private feedback cards.">
+      <figcaption>Fig. 03 &nbsp;·&nbsp; English Communication Coach &mdash; transcript in, gentle private feedback out. Diagram by Yuxuan Chen.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ─── PHASE: BREAK ─────────────────────────────────────────────── -->
+<section class="phase-card">
+  <div class="container">
+    <div class="phase-meta">
+      <span class="phase-time">18:15</span>
+      <span class="phase-num">Phase 04 of 07</span>
+    </div>
+    <h2 class="phase-title">Break</h2>
+    <p class="phase-sub">Gus appears.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="container">
+    <p>
+      The room exhales. Gordon's brain transitions ambience &mdash; music returns, captions stop. The break
+      is explicit; it is scheduled. And then, on the far wall, Gus appears. Not on a screen &mdash; the team
+      segmented the rover's video and projected the dog onto the wall directly, so Gus reads as a
+      window, not a feed.
+    </p>
+    <blockquote>
+      <p>
+        Gus on the wall felt less like a screen and more like a window.
+      </p>
+      <cite>&mdash; Kathy, JuJu, and Seren, retro</cite>
+    </blockquote>
+    <p>
+      The trio &mdash; Kathy, JuJu, Seren &mdash; built a two-location system: a Viam Rover 2 with a camera at
+      Kathy's apartment, segmentation in the classroom, voice triggered by a phrase ("hey buddy!")
+      that students could call out. The interaction is small on purpose: a low-stakes social beat in
+      the middle of a class day.
+    </p>
+    <p>
+      What broke is honest: the rover's Pi was already configured for Viam's network and didn't want to
+      join IxD's Wi-Fi without a full reset. Latency was unconfirmed end-to-end &mdash; rover to laptop to
+      segmenter to projector &mdash; and the team never identified which step was the bottleneck. The treat
+      dispenser, planned, was not built.
+    </p>
+    <figure class="figure figure-wide">
+      <img src="assets/diagrams/juju-virtual-gus-diagram.png" alt="Diagram: Viam Rover camera stream, segmentation pipeline, projector to wall.">
+      <figcaption>Fig. 04 &nbsp;·&nbsp; The Gus pipeline. Viam Rover livestream, segmentation, projection. Diagram by JuJu Kim.</figcaption>
+    </figure>
+    <p>
+      Phil's <strong>Timer</strong> activates here too &mdash; it scopes the break. Magnetic arUco markers stuck to a foamcore
+      board face up; Horizon, the OAK-D on a tripod near the whiteboard, reads them and sets the
+      countdown. The interaction is tactile in a way the rest of the system is not. You walk to the
+      board, you flip a tag.
+    </p>
+  </div>
+</section>
+
+<!-- ─── PHASE: GROUP WORK ────────────────────────────────────────── -->
+<section class="phase-card">
+  <div class="container">
+    <div class="phase-meta">
+      <span class="phase-time">18:30</span>
+      <span class="phase-num">Phase 05 of 07</span>
+    </div>
+    <h2 class="phase-title">Group Work</h2>
+    <p class="phase-sub">Lab posture &mdash; small groups, surfaces, helpers.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="container">
+    <p>
+      V-JEPA's classifier trips over to <em>group work</em>; Smart Stage shifts ambience accordingly. The
+      whiteboard becomes the room's center of gravity. Phil's Timer scopes the activity &mdash; this is its
+      most natural use, and the moment it became something more than a personal tool.
+    </p>
+    <blockquote>
+      <p>
+        Bruno is at the whiteboard. Phil lets Bruno figure out the interaction for himself using the
+        icons taped to the arUco tags. Bruno sets the timer by aiming the central tag's arrow at the
+        15-minute mark. He flips the play tag and the timer display on Phil's laptop confirms it's
+        running. Carrie and Phil exclaim, "Yes!" &mdash; excited by the fact that the smart classroom is
+        beginning to come to life.
+      </p>
+      <cite>&mdash; Phil, on Bruno using the timer for the first time</cite>
+    </blockquote>
+    <p>
+      The interesting thing about the timer wasn't the timer. It was that setting one became a group
+      gesture. <em>To set a timer is to free oneself from wondering, "are we spending too much time on
+      this?"</em>  Phil hasn't yet resolved how the camera mounts in a way that disappears for people
+      without losing sight of the board &mdash; the open hardware question.
+    </p>
+    <figure class="figure">
+      <img src="assets/diagrams/phil-timer-diagram.png" alt="Diagram of Timer: arUco tags, OAK-D detection, state machine, web display.">
+      <figcaption>Fig. 05 &nbsp;·&nbsp; Timer &mdash; arUco tags into countdown state. Diagram by Phil Cote.</figcaption>
+    </figure>
+    <p>
+      Darren's <strong>Imprint</strong> reads handwriting from any surface in the room and makes notes from it &mdash;
+      the kind of capability that only matters if it is genuinely surface-agnostic. Tony, in this
+      phase, shifts posture from observer to embodied helper. The same agent the room watched in
+      lecture is now something you can ask a question of. Same body, different role.
+    </p>
+    <p>
+      Sophie's Forest, dormant in lecture, reactivates: the more voices the room produces, the more
+      the projected forest grows. Sophie's retro is honest about how little of the difference between
+      species is yet articulated &mdash; <em>I would need to differentiate the diverse plants</em> &mdash; and that's
+      the right place for the work to be: visually settled, structurally unfinished.
+    </p>
+  </div>
+</section>
+
+<!-- ─── PHASE: TECH DEMO ─────────────────────────────────────────── -->
+<section class="phase-card">
+  <div class="container">
+    <div class="phase-meta">
+      <span class="phase-time">19:30</span>
+      <span class="phase-num">Phase 06 of 07</span>
+    </div>
+    <h2 class="phase-title">Tech Demo</h2>
+    <p class="phase-sub">Focused work, demos, and opt-in checks.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="container">
+    <p>
+      Demos and focused work share a phase. Smart Stage holds attention but lowers its own footprint &mdash;
+      the brain knows demos are not lectures, even when the speaker is at the podium. (The simulator
+      flagged this as a place where the room can mis-infer; a body at the podium with the rest of the
+      class seated reads identically as <em>lecture</em> from the camera angle.)
+    </p>
+    <p>
+      <strong>NodCheck</strong> opens here for the version of the room that wants it: a short comprehension window
+      tied to a question, accumulating yes/shakes on the instructor's screen. It remains opt-in. The
+      version Kathy wants &mdash; multiple students, displayed on the instructor's device, button placed
+      somewhere both parties can reach &mdash; is the clearest path forward.
+    </p>
+  </div>
+</section>
+
+<!-- ─── PHASE: WRAP ──────────────────────────────────────────────── -->
+<section class="phase-card">
+  <div class="container">
+    <div class="phase-meta">
+      <span class="phase-time">19:50</span>
+      <span class="phase-num">Phase 07 of 07</span>
+    </div>
+    <h2 class="phase-title">Wrap</h2>
+    <p class="phase-sub">Dismissal. The room logs the class.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="container">
+    <p>
+      The session resolves. Smart Stage posts a Discord summary; Assignment Tracker posts deadlines it
+      caught; Lumi has a small backlog of suggestions that no one will see unless someone opens the
+      private review pane. Forest stops growing. Gus has been gone for half an hour. Person count
+      drops, V-JEPA settles back to <em>empty</em>, and the room dims.
+    </p>
+    <p>
+      The classroom logged the class.
+    </p>
+  </div>
+</section>
+
+<!-- ─── THESIS ──────────────────────────────────────────────────── -->
+<section class="phase-card phase-card-light">
+  <div class="container">
+    <div class="phase-meta">
+      <span class="phase-time">&infin;</span>
+      <span class="phase-num">The Thesis</span>
+    </div>
+    <h2 class="phase-title">A Multi-Agent Room</h2>
+    <p class="phase-sub">Cameras, code, and people on one bus.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="container">
+    <p>
+      Most multi-agent systems literature &mdash; AutoGen, CrewAI, LangGraph, MCP-based frameworks &mdash;
+      assumes all agents are software. This classroom puts three different kinds on the same bus:
+      <strong>perception agents</strong> that sense the room (cameras, V-JEPA), <strong>reactive agents</strong> that respond to
+      events (the student projects, some LLM-backed, some not), and <strong>human agents</strong> &mdash; the students
+      and professors physically present, whose goals the system exists to serve.
+    </p>
+    <p>
+      The interesting design problem isn't "how do we make software agents collaborate." It's how a
+      coordination layer holds context across cameras, code, and people, and routes events &mdash;
+      ambient, broadcast, or directed &mdash; based on what the room is doing. A fatigue alert during a
+      five-minute break is noise. During a forty-five-minute lecture, it is signal. The same reading,
+      different context.
+    </p>
+    <p>
+      The orchestrator that does this routing is designed but not yet built. The whitepaper is the
+      design document. This site is the room those decisions live inside.
+    </p>
+    <ul class="links">
+      <li>
+        <a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/multi-agent-classroom.md">
+          Read the whitepaper &rarr;
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/diagrams/network-diagram.html">
+          Open the network diagram &rarr;
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/related-work.md">
+          Read the related work &rarr;
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── CREDITS ─────────────────────────────────────────────────── -->
+<section class="chapter chapter-credits">
+  <div class="container">
+    <h2 class="credits-title">Contributors</h2>
+
+    <div class="credits-grid">
+      <div class="credits-block">
+        <h3>Instructors</h3>
+        <ul>
+          <li>Carrie Kengle</li>
+          <li>Bruno Kruse</li>
+        </ul>
+      </div>
+
+      <div class="credits-block">
+        <h3>Students</h3>
+        <ul>
+          <li>Darren Chia &mdash; Imprint</li>
+          <li>Feifey Wang &mdash; Focus Beam</li>
+          <li>Gordon Cheng &mdash; Smart Stage</li>
+          <li>JuJu Kim &mdash; Gus Mode</li>
+          <li>Kathy Choi &mdash; NodCheck, Gus Mode</li>
+          <li>Phil Cote &mdash; Timer</li>
+          <li>Ramon Naula &mdash; Tony</li>
+          <li>Seren Kim &mdash; Gus Mode</li>
+          <li>Shuyang Tian &mdash; Tony, Assignment Tracker</li>
+          <li>Sophie Lee &mdash; Forest in the Classroom</li>
+          <li>Yuxuan Chen &mdash; English Communication Coach</li>
+        </ul>
+      </div>
+
+      <div class="credits-block">
+        <h3>Source Repositories</h3>
+        <ul>
+          <li><a href="https://github.com/kandizzy/smart-objects-cameras">smart-objects-cameras</a> &mdash; class template, detectors, classroom API</li>
+          <li><a href="https://github.com/ccheng2-commits/so-smart-stage">so-smart-stage</a> &mdash; Smart Stage orchestrator</li>
+          <li><a href="https://github.com/ccheng2-commits/so-vjepa-probe">so-vjepa-probe</a> &mdash; V-JEPA classifier server</li>
+          <li><a href="https://github.com/ccheng2-commits/so-overhead-dashboard">so-overhead-dashboard</a> &mdash; bird's-eye person tracking</li>
+        </ul>
+      </div>
+
+      <div class="credits-block">
+        <h3>Companion Artifacts</h3>
+        <ul>
+          <li><a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/multi-agent-classroom.md">The whitepaper</a></li>
+          <li><a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/diagrams/network-diagram.html">Network diagram</a></li>
+          <li><a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/references.md">Bibliography</a></li>
+          <li>Class Timeline simulator (in source repo, <code>classroom-api/</code>)</li>
+        </ul>
+      </div>
+
+      <div class="credits-block credits-wide">
+        <h3>Course Hub</h3>
+        <ul>
+          <li><a href="https://areaofeffect.github.io/sva-smart-objects/">Smart Objects course site</a> &mdash; Bruno Kruse &amp; CK</li>
+          <li><a href="https://kandizzy.github.io/smart-objects-cameras/">Camera &amp; Pi setup</a> &mdash; quickstart, SSH, detector docs</li>
+          <li><a href="https://brunokruse.github.io/smartobjects-labs-week2">Lectures, labs, demos</a> &mdash; full semester</li>
+          <li><a href="https://room-has-feelings.ck.land">Idea Generator</a> &mdash; AI-powered creative prompts</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="colophon-footer">
+  <div class="container">
+    <span>Smart Classroom &middot; SVA &middot; 2026</span>
+    <span><a href="https://github.com/kandizzy/smart-objects-cameras">Source &rarr;</a></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
