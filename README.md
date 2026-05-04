@@ -1,6 +1,10 @@
 # Smart Classroom Story
 
+**[Read the story →](https://kandizzy.github.io/smart-classroom-story)**
+
 A scrollable storyboard companion to the [Smart Classroom whitepaper](https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/multi-agent-classroom.md). One class session, traced phase by phase, told through the projects that activate the room.
+
+![One Monday session, in seven phases.](assets/gifs/phase-ticker.gif)
 
 ## What this is
 
@@ -21,6 +25,8 @@ Seven phases of a class session:
 7. **Wrap** — dismissal
 
 Plus a closing thesis chapter and a credits page.
+
+![The room running — events on the bus.](assets/gifs/event-feed.gif)
 
 ## Companion artifacts
 
