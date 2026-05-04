@@ -9,8 +9,49 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=10">
+<style>
+  /* Hide page content until webfonts are ready so Archivo's metrics don't
+     cause a layout jump when they swap in. A tiny spinner shows in the
+     meantime. Fail-safe reveal after 2s. */
+  html.fonts-loading body > *:not(.page-spinner) { opacity: 0; }
+  body > *:not(.page-spinner) { transition: opacity 0.18s ease-out; }
+  .page-spinner {
+    display: none;
+    position: fixed; inset: 0;
+    align-items: center; justify-content: center;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  html.fonts-loading .page-spinner { display: flex; }
+  .page-spinner svg {
+    animation: page-spinner-rotate 1.4s linear infinite;
+  }
+  @keyframes page-spinner-rotate { to { transform: rotate(360deg); } }
+</style>
+<script>
+  (function () {
+    var h = document.documentElement;
+    h.classList.add('fonts-loading');
+    function reveal() { h.classList.remove('fonts-loading'); }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(reveal);
+      setTimeout(reveal, 2000);
+    } else {
+      reveal();
+    }
+  })();
+</script>
 </head>
 <body>
+
+<div class="page-spinner" aria-hidden="true">
+  <svg width="72" height="72" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+    <!-- Bauhaus primary forms — circle, square, triangle — rotating as one. -->
+    <circle cx="14" cy="5" r="2.5" fill="#000"/>
+    <rect x="4.2" y="16.5" width="4" height="4" fill="#000"/>
+    <polygon points="19.8,16.5 23.8,16.5 21.8,20.5" fill="#000"/>
+  </svg>
+</div>
 
 <header class="masthead">
   <div class="masthead-inner">
@@ -110,10 +151,6 @@
       and then, as people sit, to <em>lecture</em>. The brain confirms lecture mode. The room hasn't been told
       what to do; it has been told what it is.
     </p>
-    <figure class="figure figure-wide">
-      <img src="assets/artifacts/virtual-gus-projector02.jpg" alt="Projector setup for Gus presence in the classroom.">
-      <figcaption>Fig. 01 &nbsp;·&nbsp; Projection rig for the Gus feed, set up before class. Projector and segmented stream are wired ahead of break.</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -157,7 +194,7 @@
     </p>
     <figure class="figure">
       <img src="assets/diagrams/feifey-focus-beam-diagram.jpg" alt="Diagram of Focus Beam: gesture detection feeding a slide region map and a dimming overlay.">
-      <figcaption>Fig. 02 &nbsp;·&nbsp; Focus Beam &mdash; speech and gesture into slide regions. Diagram by Feifey Wang.</figcaption>
+      <figcaption>Fig. 01 &nbsp;·&nbsp; Focus Beam &mdash; speech and gesture into slide regions. Diagram by Feifey Wang.</figcaption>
     </figure>
     <p id="assignment-tracker">
       Behind both, Shuyang's <strong>Assignment Tracker</strong> listens to the captions and the whiteboard for
@@ -205,7 +242,7 @@
     </p>
     <figure class="figure">
       <img src="assets/diagrams/kevin-mingyue-sleep-detection-diagram.jpg" alt="Hand-drawn diagram of Sleep Detection: camera reads drowsy state, system pings a designated friend, friend taps the sleeper.">
-      <figcaption>Fig. 04 &nbsp;·&nbsp; Sleep Detection &mdash; camera read, lateral notification, peer nudge. Diagram by Kevin &amp; Mingyue.</figcaption>
+      <figcaption>Fig. 02 &nbsp;·&nbsp; Sleep Detection &mdash; camera read, lateral notification, peer nudge. Diagram by Kevin &amp; Mingyue.</figcaption>
     </figure>
     <figure class="figure">
       <video controls muted preload="metadata" playsinline>
@@ -281,6 +318,10 @@
       </p>
       <cite>&mdash; Kathy, JuJu, and Seren, retro</cite>
     </blockquote>
+    <figure class="figure">
+      <img src="assets/artifacts/virtual-gus-projector02.jpg" alt="Projector setup for Gus presence in the classroom.">
+      <figcaption>Fig. 04 &nbsp;·&nbsp; The projection rig for Gus. Projector and segmented stream wired into the wall.</figcaption>
+    </figure>
     <p id="gus">
       The trio &mdash; Kathy, JuJu, Seren &mdash; built a two-location system: a Viam Rover 2 with a camera at
       Kathy's apartment, segmentation in the classroom, voice triggered by a phrase ("hey buddy!")
@@ -360,10 +401,25 @@
     </p>
     <p>
       Sophie's Forest, dormant in lecture, reactivates: the more voices the room produces, the more
-      the projected forest grows. Sophie's retro is honest about how little of the difference between
-      species is yet articulated &mdash; <em>I would need to differentiate the diverse plants</em> &mdash; and that's
-      the right place for the work to be: visually settled, structurally unfinished.
+      the projected forest grows. Late one Monday, alone in the room playing a recording back into it,
+      Sophie noticed something the design hadn't intended &mdash; <em>Forest doesn't know who is talking.
+      The power difference that exists in the room disappears in the forest.</em> Teacher and student
+      each grow a tree. The work surfaced a quality through use that it hadn't been built toward.
     </p>
+    <p>
+      When Sophie showed the demo to her mother over a video call &mdash; no setup, no explanation
+      &mdash; the read came back unprompted.
+    </p>
+    <blockquote>
+      <p>
+        Isn't it just like the little spirits in a Miyazaki forest? Like they just appeared?
+      </p>
+      <cite>&mdash; Sophie's mom</cite>
+    </blockquote>
+    <figure class="figure">
+      <img src="assets/diagrams/sophie-forest-diagram.jpg" alt="Diagram of Forest in the Classroom: voices into a generative landscape that grows tree by tree.">
+      <figcaption>Fig. 07 &nbsp;·&nbsp; Forest in the Classroom &mdash; voices into a generative landscape. Diagram by Sophie Lee.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -450,6 +506,10 @@
     <p>
       The classroom logged the class.
     </p>
+    <figure class="figure">
+      <img src="assets/artifacts/sophie-forest-vignette.jpg" alt="A dense projected forest of generative trees — Sophie's Forest at the end of a full classroom session of voices.">
+      <figcaption>Fig. 08 &nbsp;·&nbsp; The forest grows by the voice. Captured by Sophie Lee.</figcaption>
+    </figure>
   </div>
 </section>
 

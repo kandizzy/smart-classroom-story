@@ -63,6 +63,7 @@ window.SIM_DATA =
     { "time": "18:17", "phase": "break",       "source": "gus-mode",           "type": "projection.start",   "routing": "broadcast", "summary": "Gus appears on the wall — segmented from the rover stream." },
     { "time": "18:20", "phase": "break",       "source": "gus-mode",           "type": "voice.heard",        "routing": "directed",  "target": "gus-mode",     "summary": "A student says 'hey buddy!' — Gus reacts." },
     { "time": "18:24", "phase": "break",       "source": "gus-mode",           "type": "treat.requested",    "routing": "ambient",   "summary": "Treat dispenser hardware not yet built; request logged for the future." },
+    { "time": "18:25", "phase": "break",       "source": "forest",             "type": "tree.grow",          "routing": "ambient",   "summary": "Casual break conversation grows a few trees on the back wall." },
     { "time": "18:28", "phase": "break",       "source": "smart-stage",        "type": "phase.group.cue",    "routing": "broadcast", "summary": "Group work cue fires." },
 
     { "time": "18:30", "phase": "group-work",  "source": "vjepa",              "type": "classifier.group",   "routing": "broadcast", "summary": "V-JEPA confirms group_work; brain shifts ambience." },
@@ -73,6 +74,7 @@ window.SIM_DATA =
     { "time": "18:48", "phase": "group-work",  "source": "imprint",            "type": "note.saved",         "routing": "broadcast", "summary": "Captured notes saved; available to all subscribers." },
     { "time": "18:55", "phase": "group-work",  "source": "forest",             "type": "voice.energy",       "routing": "ambient",   "summary": "Sustained voices grow the projected forest." },
     { "time": "19:05", "phase": "group-work",  "source": "tony",               "type": "helper.summoned",    "routing": "directed",  "target": "tony",         "summary": "A student calls Tony over. Tony shifts from observer to embodied helper." },
+    { "time": "19:18", "phase": "group-work",  "source": "forest",             "type": "canopy.dense",       "routing": "ambient",   "summary": "Canopy fills. Forest has not distinguished any voice from another." },
     { "time": "19:20", "phase": "group-work",  "source": "timer",              "type": "timer.done",         "routing": "broadcast", "summary": "Timer expires; display flashes; group looks up." },
     { "time": "19:28", "phase": "group-work",  "source": "smart-stage",        "type": "phase.demo.cue",     "routing": "broadcast", "summary": "Tech demo cue fires." },
 
