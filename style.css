@@ -140,9 +140,20 @@ a:hover { opacity: 0.55; }
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 32px;
-  padding-bottom: 20px;
-  border-bottom: 2px solid var(--paper-deep);
+  padding-bottom: 24px;
+  position: relative;
   opacity: 0.95;
+}
+/* Partial-width left-anchored bar — Swiss/Bauhaus rule.
+   Doesn't reach the right edge; that's the point. */
+.phase-meta::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 220px;
+  height: 5px;
+  background: currentColor;
 }
 
 .phase-time {
@@ -366,8 +377,17 @@ blockquote cite {
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--ink);
+  padding-bottom: 12px;
+  position: relative;
+}
+.credits-block h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: var(--ink);
 }
 
 .credits-block ul {
@@ -445,11 +465,38 @@ blockquote cite {
 /* ─── Mobile ────────────────────────────────────────────────── */
 
 @media (max-width: 640px) {
-  .container { padding: 0 24px; }
-  .masthead { padding: 64px 0 48px; }
-  .phase-card { padding: 64px 0; }
+  .container { padding: 0 20px; }
+  .masthead { padding: 56px 0 40px; }
+  .phase-card { padding: 56px 0; }
   .chapter { padding: 56px 0; }
-  .figure-wide { width: calc(100vw - 48px); }
+  .figure-wide { width: calc(100vw - 40px); }
+
+  /* Display titles: pure-vw scaling so long single words ("Classroom",
+     "Contributors") don't overshoot the viewport at narrow widths. */
+  .masthead-title {
+    font-size: 11vw;
+    letter-spacing: -0.05em;
+    line-height: 0.92;
+  }
+  .phase-title {
+    font-size: 12vw;
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+  }
+  .credits-title {
+    font-size: 8.5vw;
+    letter-spacing: -0.05em;
+    line-height: 0.92;
+  }
+
+  /* Safety net: hyphenate long words rather than overflow. */
+  .masthead-title,
+  .phase-title,
+  .credits-title {
+    overflow-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
 }
 
 /* ─── Print ─────────────────────────────────────────────────── */
