@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=10">
-<link rel="stylesheet" href="simulator.css?v=3">
+<link rel="stylesheet" href="simulator.css?v=4">
 </head>
 <body class="simulator-body">
 
@@ -57,14 +57,21 @@
   <!-- ─── Main layout: project grid + event stream ────────────── -->
   <section class="sim-layout">
     <div class="container container-wide">
+
+      <!-- Mobile-only tabs: switch between projects and stream. -->
+      <div class="sim-tabs" role="tablist">
+        <button type="button" class="sim-tab is-active" data-tab="projects" role="tab" aria-selected="true">Projects</button>
+        <button type="button" class="sim-tab" data-tab="stream" role="tab" aria-selected="false">Event stream</button>
+      </div>
+
       <div class="sim-grid">
 
-        <aside class="sim-projects" id="sim-projects-panel">
+        <aside class="sim-projects sim-tabpanel is-active" id="sim-projects-panel" data-tab="projects" role="tabpanel">
           <h2 class="sim-panel-title">Projects on the bus</h2>
           <ul class="sim-project-list" id="sim-project-list"></ul>
         </aside>
 
-        <article class="sim-stream-wrap">
+        <article class="sim-stream-wrap sim-tabpanel" data-tab="stream" role="tabpanel">
           <h2 class="sim-panel-title">Event stream</h2>
           <ol class="sim-stream" id="sim-stream"></ol>
         </article>
@@ -132,6 +139,6 @@
 </footer>
 
 <script src="simulator-data.js?v=3"></script>
-<script src="simulator.js?v=3"></script>
+<script src="simulator.js?v=4"></script>
 </body>
 </html>
