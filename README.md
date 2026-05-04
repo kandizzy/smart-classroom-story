@@ -37,8 +37,6 @@ Smart Stage spans three repositories of its own:
 
 ## Contributors
 
-**Instructors:** Carrie Kengle, Bruno Kruse
-
 **Students:** Darren Chia, Feifey Wang, Gordon Cheng, JuJu Kim, Kathy Choi, Phil Cote, Ramon Naula, Seren Kim, Shuyang Tian, Sophie Lee, Yuxuan Chen
 
 Built spring 2026 at SVA MFA Interaction Design.

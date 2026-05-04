@@ -1,0 +1,91 @@
+{
+  "session": {
+    "date": "Monday, one class",
+    "title": "A Multi-Agent Room — One Session",
+    "start": "16:45",
+    "end": "19:55"
+  },
+  "phases": [
+    { "id": "pre-arrival", "label": "Pre-Arrival",  "start": "16:45", "end": "17:00" },
+    { "id": "arrival",     "label": "Arrival",      "start": "17:00", "end": "17:10" },
+    { "id": "lecture",     "label": "Lecture",      "start": "17:10", "end": "18:15" },
+    { "id": "break",       "label": "Break",        "start": "18:15", "end": "18:30" },
+    { "id": "group-work",  "label": "Group Work",   "start": "18:30", "end": "19:30" },
+    { "id": "tech-demo",   "label": "Tech Demo",    "start": "19:30", "end": "19:50" },
+    { "id": "wrap",        "label": "Wrap",         "start": "19:50", "end": "19:55" }
+  ],
+  "projects": [
+    { "id": "smart-stage",        "label": "Smart Stage",                "students": ["Gordon Cheng"] },
+    { "id": "forest",             "label": "Forest in the Classroom",     "students": ["Sophie Lee"] },
+    { "id": "overhead-dashboard", "label": "Overhead Dashboard",          "students": ["Gordon Cheng"] },
+    { "id": "vjepa",              "label": "V-JEPA Probe",                "students": ["Gordon Cheng"] },
+    { "id": "focus-beam",         "label": "Focus Beam",                  "students": ["Feifey Wang"] },
+    { "id": "assignment-tracker", "label": "Assignment Tracker",          "students": ["Shuyang Tian"] },
+    { "id": "sleep-detection",    "label": "Sleep Detection",             "students": ["Kevin Shi", "Mingyue Zhou"] },
+    { "id": "tony",               "label": "Tony",                        "students": ["Ramon Naula", "Shuyang Tian"] },
+    { "id": "grammar-coach",      "label": "English Communication Coach", "students": ["Yuxuan Chen"] },
+    { "id": "gus-mode",           "label": "Gus Mode",                    "students": ["JuJu Kim", "Kathy Choi", "Seren Kim"] },
+    { "id": "timer",              "label": "Timer",                       "students": ["Phil Cote"] },
+    { "id": "imprint",            "label": "Imprint",                     "students": ["Darren Chia"] },
+    { "id": "nodcheck",           "label": "NodCheck",                    "students": ["Kathy Choi"] }
+  ],
+  "events": [
+
+    { "time": "16:45", "phase": "pre-arrival", "source": "smart-stage",        "type": "system.boot",        "routing": "ambient",   "summary": "Smart Stage boots on Pi 5. V-JEPA classifier reachable on the GPU host." },
+    { "time": "16:46", "phase": "pre-arrival", "source": "vjepa",              "type": "classifier.empty",   "routing": "ambient",   "summary": "V-JEPA reads the room: empty." },
+    { "time": "16:47", "phase": "pre-arrival", "source": "smart-stage",        "type": "music.up",           "routing": "ambient",   "summary": "Ambient music at low volume; pre-arrival posture." },
+    { "time": "16:50", "phase": "pre-arrival", "source": "forest",             "type": "scene.seed",         "routing": "ambient",   "summary": "Forest seeds a faint generative landscape on the back projection." },
+    { "time": "16:55", "phase": "pre-arrival", "source": "gus-mode",           "type": "rover.online",       "routing": "ambient",   "summary": "Viam Rover 2 boots at Kathy's apartment. Gus is online but not yet projected." },
+    { "time": "16:58", "phase": "pre-arrival", "source": "smart-stage",        "type": "schedule.loaded",    "routing": "ambient",   "summary": "Schedule loaded; break and tech-demo cues queued." },
+
+    { "time": "17:00", "phase": "arrival",     "source": "overhead-dashboard", "type": "person.detected",    "routing": "broadcast", "summary": "First students enter. Overhead cameras pick up two bodies." },
+    { "time": "17:03", "phase": "arrival",     "source": "overhead-dashboard", "type": "person.count",       "routing": "broadcast", "summary": "Person count: 8. Room filling." },
+    { "time": "17:06", "phase": "arrival",     "source": "vjepa",              "type": "classifier.group",   "routing": "broadcast", "summary": "V-JEPA shifts: group_work." },
+    { "time": "17:08", "phase": "arrival",     "source": "smart-stage",        "type": "music.fade",         "routing": "broadcast", "summary": "Ambient music fades as students take seats." },
+    { "time": "17:09", "phase": "arrival",     "source": "vjepa",              "type": "classifier.lecture", "routing": "broadcast", "summary": "V-JEPA shifts: lecture." },
+    { "time": "17:10", "phase": "arrival",     "source": "smart-stage",        "type": "phase.lecture",      "routing": "broadcast", "summary": "Lecture mode confirmed." },
+
+    { "time": "17:11", "phase": "lecture",     "source": "smart-stage",        "type": "captions.on",        "routing": "broadcast", "summary": "Sherpa-onnx ASR streaming captions to wall display." },
+    { "time": "17:14", "phase": "lecture",     "source": "smart-stage",        "type": "summary.start",      "routing": "ambient",   "summary": "Rolling Discord summary every 5 minutes." },
+    { "time": "17:18", "phase": "lecture",     "source": "focus-beam",         "type": "gesture.point",      "routing": "directed",  "target": "focus-beam",   "summary": "Instructor points at slide region. Focus Beam dims everything else." },
+    { "time": "17:22", "phase": "lecture",     "source": "focus-beam",         "type": "region.highlighted", "routing": "broadcast", "summary": "Highlighted region published; downstream agents can cite it." },
+    { "time": "17:28", "phase": "lecture",     "source": "assignment-tracker", "type": "task.detected",      "routing": "ambient",   "summary": "Assignment Tracker reads a deadline off the captions." },
+    { "time": "17:35", "phase": "lecture",     "source": "sleep-detection",    "type": "fatigue.detected",   "routing": "ambient",                            "summary": "Sleep Detection's own face-tracking notices drowsiness in an opted-in student." },
+    { "time": "17:36", "phase": "lecture",     "source": "sleep-detection",    "type": "friend.nudge",       "routing": "directed",  "target": "peer",         "summary": "Sleep Detection notifies the student's chosen friend, not the instructor." },
+    { "time": "17:50", "phase": "lecture",     "source": "grammar-coach",      "type": "suggestion.queued",  "routing": "directed",  "target": "grammar-coach","summary": "Lumi catches a phrase; suggestion saved for after-class private review." },
+    { "time": "18:00", "phase": "lecture",     "source": "smart-stage",        "type": "summary.posted",     "routing": "broadcast", "summary": "Mid-lecture summary posted to Discord channel." },
+    { "time": "18:14", "phase": "lecture",     "source": "smart-stage",        "type": "phase.break.cue",    "routing": "broadcast", "summary": "Break cue fires; ambience shift queued." },
+
+    { "time": "18:15", "phase": "break",       "source": "smart-stage",        "type": "captions.off",       "routing": "broadcast", "summary": "Captions off; break begins." },
+    { "time": "18:16", "phase": "break",       "source": "smart-stage",        "type": "music.up",           "routing": "ambient",   "summary": "Ambient music returns at higher volume." },
+    { "time": "18:17", "phase": "break",       "source": "gus-mode",           "type": "projection.start",   "routing": "broadcast", "summary": "Gus appears on the wall — segmented from the rover stream." },
+    { "time": "18:20", "phase": "break",       "source": "gus-mode",           "type": "voice.heard",        "routing": "directed",  "target": "gus-mode",     "summary": "A student says 'hey buddy!' — Gus reacts." },
+    { "time": "18:24", "phase": "break",       "source": "gus-mode",           "type": "treat.requested",    "routing": "ambient",   "summary": "Treat dispenser hardware not yet built; request logged for the future." },
+    { "time": "18:28", "phase": "break",       "source": "smart-stage",        "type": "phase.group.cue",    "routing": "broadcast", "summary": "Group work cue fires." },
+
+    { "time": "18:30", "phase": "group-work",  "source": "vjepa",              "type": "classifier.group",   "routing": "broadcast", "summary": "V-JEPA confirms group_work; brain shifts ambience." },
+    { "time": "18:33", "phase": "group-work",  "source": "smart-stage",        "type": "ambience.shift",     "routing": "ambient",   "summary": "Lighting and music shift to lab posture." },
+    { "time": "18:35", "phase": "group-work",  "source": "timer",              "type": "tag.detected",       "routing": "directed",  "target": "timer",        "summary": "Bruno places the play arUco tag at 15 minutes; Horizon reads it." },
+    { "time": "18:36", "phase": "group-work",  "source": "timer",              "type": "timer.started",      "routing": "broadcast", "summary": "Timer running. Display visible to the group." },
+    { "time": "18:42", "phase": "group-work",  "source": "imprint",            "type": "handwriting.read",   "routing": "ambient",   "summary": "Imprint captures handwriting from the surface near the whiteboard." },
+    { "time": "18:48", "phase": "group-work",  "source": "imprint",            "type": "note.saved",         "routing": "broadcast", "summary": "Captured notes saved; available to all subscribers." },
+    { "time": "18:55", "phase": "group-work",  "source": "forest",             "type": "voice.energy",       "routing": "ambient",   "summary": "Sustained voices grow the projected forest." },
+    { "time": "19:05", "phase": "group-work",  "source": "tony",               "type": "helper.summoned",    "routing": "directed",  "target": "tony",         "summary": "A student calls Tony over. Tony shifts from observer to embodied helper." },
+    { "time": "19:20", "phase": "group-work",  "source": "timer",              "type": "timer.done",         "routing": "broadcast", "summary": "Timer expires; display flashes; group looks up." },
+    { "time": "19:28", "phase": "group-work",  "source": "smart-stage",        "type": "phase.demo.cue",     "routing": "broadcast", "summary": "Tech demo cue fires." },
+
+    { "time": "19:30", "phase": "tech-demo",   "source": "smart-stage",        "type": "demo.mode",          "routing": "broadcast", "summary": "Tech-demo posture: Smart Stage holds attention but lowers footprint." },
+    { "time": "19:34", "phase": "tech-demo",   "source": "nodcheck",           "type": "polled.opened",      "routing": "directed",  "target": "instructor",   "summary": "Instructor opens NodCheck for the question 'does this make sense?'" },
+    { "time": "19:35", "phase": "tech-demo",   "source": "nodcheck",           "type": "nod.detected",       "routing": "directed",  "target": "instructor",   "summary": "First nod read." },
+    { "time": "19:36", "phase": "tech-demo",   "source": "nodcheck",           "type": "shake.detected",     "routing": "directed",  "target": "instructor",   "summary": "First head-shake read." },
+    { "time": "19:38", "phase": "tech-demo",   "source": "nodcheck",           "type": "tally.shown",        "routing": "directed",  "target": "instructor",   "summary": "Running tally on the instructor's screen." },
+    { "time": "19:48", "phase": "tech-demo",   "source": "smart-stage",        "type": "phase.wrap.cue",     "routing": "broadcast", "summary": "Wrap cue fires." },
+
+    { "time": "19:50", "phase": "wrap",        "source": "smart-stage",        "type": "summary.discord",    "routing": "broadcast", "summary": "Final session summary posted to Discord." },
+    { "time": "19:51", "phase": "wrap",        "source": "assignment-tracker", "type": "deadlines.posted",   "routing": "broadcast", "summary": "Captured deadlines posted to the class channel." },
+    { "time": "19:52", "phase": "wrap",        "source": "forest",             "type": "scene.fade",         "routing": "ambient",   "summary": "Forest fades back to silence." },
+    { "time": "19:53", "phase": "wrap",        "source": "vjepa",              "type": "classifier.empty",   "routing": "broadcast", "summary": "V-JEPA reads the room: empty." },
+    { "time": "19:54", "phase": "wrap",        "source": "smart-stage",        "type": "music.stop",         "routing": "ambient",   "summary": "Music stops." },
+    { "time": "19:55", "phase": "wrap",        "source": "smart-stage",        "type": "session.logged",     "routing": "ambient",   "summary": "Session logged. The room dims." }
+  ]
+}

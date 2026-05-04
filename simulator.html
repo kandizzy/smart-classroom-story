@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Smart Classroom · Simulator</title>
+<meta name="description" content="A visualization of what the multi-agent room could do across one Monday session. Companion to the Smart Classroom story site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="simulator.css?v=3">
+</head>
+<body class="simulator-body">
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="meta">
+      <span class="meta-label"><a href="index.html" style="color:inherit; border-bottom-color:inherit;">&larr; Back to the story</a></span>
+      <span class="meta-sep">·</span>
+      <span class="meta-label">Simulator</span>
+    </div>
+    <h1 class="masthead-title">A Multi-Agent Room</h1>
+    <p class="masthead-sub">An orchestrator simulation.</p>
+  </div>
+</header>
+
+<main class="sim-main">
+
+  <!-- ─── Control bar ─────────────────────────────────────────── -->
+  <section class="sim-controls">
+    <div class="container container-wide">
+      <div class="sim-clock-row">
+        <div class="sim-clock">
+          <span class="sim-clock-time" id="sim-time">16:45</span>
+          <span class="sim-clock-phase" id="sim-phase-label">PRE-ARRIVAL</span>
+        </div>
+        <div class="sim-buttons">
+          <button id="btn-play" class="sim-btn sim-btn-primary">Play</button>
+          <button id="btn-skip" class="sim-btn">Skip phase &rarr;</button>
+          <button id="btn-reset" class="sim-btn">Reset</button>
+        </div>
+      </div>
+
+      <!-- Phase timeline -->
+      <div class="sim-phaseline" id="sim-phaseline"></div>
+
+      <!-- Routing legend -->
+      <div class="sim-legend">
+        <span class="sim-legend-item"><span class="badge badge-ambient">AMBIENT</span> log only, low salience</span>
+        <span class="sim-legend-item"><span class="badge badge-broadcast">BROADCAST</span> all subscribers</span>
+        <span class="sim-legend-item"><span class="badge badge-directed">DIRECTED &rarr;</span> one subscriber</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Main layout: project grid + event stream ────────────── -->
+  <section class="sim-layout">
+    <div class="container container-wide">
+      <div class="sim-grid">
+
+        <aside class="sim-projects" id="sim-projects-panel">
+          <h2 class="sim-panel-title">Projects on the bus</h2>
+          <ul class="sim-project-list" id="sim-project-list"></ul>
+        </aside>
+
+        <article class="sim-stream-wrap">
+          <h2 class="sim-panel-title">Event stream</h2>
+          <ol class="sim-stream" id="sim-stream"></ol>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Further Explorations ─────────────────────────────────── -->
+  <section class="phase-card phase-card-light">
+    <div class="container">
+      <div class="phase-meta">
+        <span class="phase-num">Further Explorations</span>
+      </div>
+      <h2 class="phase-title">Where the code lives</h2>
+      <p class="phase-sub">Two parallel attempts to make the architecture run for real. Both are exploration.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="container">
+      <p>
+        This simulator visualizes a single canonical session of the multi-agent room as the story
+        describes it. The events are scripted; the routing categories are real; nothing in this page
+        connects to a camera. It's a way to see the architecture in motion without claiming the room
+        was wired up at this fidelity for any particular class.
+      </p>
+      <p>
+        Two more ambitious attempts to make the system actually run live exist in the source
+        repository. Both came out of this semester. Both are exploration &mdash; experiments worth keeping
+        and developing further, not production claims.
+      </p>
+      <ul class="links">
+        <li>
+          <a href="https://github.com/kandizzy/smart-objects-cameras/tree/main/classroom-api" target="_blank" rel="noopener">
+            classroom-api &mdash; Node room runtime &nearr;
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/kandizzy/smart-objects-cameras/tree/main/classroom-api-python" target="_blank" rel="noopener">
+            classroom-api-python &mdash; FastAPI reference implementation &nearr;
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/multi-agent-classroom.md" target="_blank" rel="noopener">
+            Whitepaper &mdash; the architectural argument &nearr;
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/diagrams/network-diagram.html" target="_blank" rel="noopener">
+            Network diagram &mdash; the agent topology &nearr;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="colophon-footer">
+  <div class="container">
+    <span>Smart Classroom &middot; SVA &middot; 2026</span>
+    <span><a href="index.html">&larr; Back to the story</a></span>
+  </div>
+</footer>
+
+<script src="simulator-data.js?v=3"></script>
+<script src="simulator.js?v=3"></script>
+</body>
+</html>
