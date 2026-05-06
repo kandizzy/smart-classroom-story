@@ -13,7 +13,7 @@ window.SIM_DATA =
     { "id": "lecture",     "label": "Lecture",      "start": "17:10", "end": "18:15" },
     { "id": "break",       "label": "Break",        "start": "18:15", "end": "18:30" },
     { "id": "group-work",  "label": "Group Work",   "start": "18:30", "end": "19:30" },
-    { "id": "tech-demo",   "label": "Tech Demo",    "start": "19:30", "end": "19:50" },
+    { "id": "tech-demo",   "label": "Labs & Demos", "start": "19:30", "end": "19:50" },
     { "id": "wrap",        "label": "Wrap",         "start": "19:50", "end": "19:55" }
   ],
   "projects": [
@@ -38,7 +38,7 @@ window.SIM_DATA =
     { "time": "16:47", "phase": "pre-arrival", "source": "smart-stage",        "type": "music.up",           "routing": "ambient",   "summary": "Ambient music at low volume; pre-arrival posture." },
     { "time": "16:50", "phase": "pre-arrival", "source": "forest",             "type": "scene.seed",         "routing": "ambient",   "summary": "Forest seeds a faint generative landscape on the back projection." },
     { "time": "16:55", "phase": "pre-arrival", "source": "gus-mode",           "type": "rover.online",       "routing": "ambient",   "summary": "Viam Rover 2 boots at Kathy's apartment. Gus is online but not yet projected." },
-    { "time": "16:58", "phase": "pre-arrival", "source": "smart-stage",        "type": "schedule.loaded",    "routing": "ambient",   "summary": "Schedule loaded; break and tech-demo cues queued." },
+    { "time": "16:58", "phase": "pre-arrival", "source": "smart-stage",        "type": "schedule.loaded",    "routing": "ambient",   "summary": "Schedule loaded; break and labs & demos cues queued." },
 
     { "time": "17:00", "phase": "arrival",     "source": "overhead-dashboard", "type": "person.detected",    "routing": "broadcast", "summary": "First students enter. Overhead cameras pick up two bodies." },
     { "time": "17:03", "phase": "arrival",     "source": "overhead-dashboard", "type": "person.count",       "routing": "broadcast", "summary": "Person count: 8. Room filling." },
@@ -76,9 +76,9 @@ window.SIM_DATA =
     { "time": "19:05", "phase": "group-work",  "source": "tony",               "type": "helper.summoned",    "routing": "directed",  "target": "tony",         "summary": "A student calls Tony over. Tony shifts from observer to embodied helper." },
     { "time": "19:18", "phase": "group-work",  "source": "forest",             "type": "canopy.dense",       "routing": "ambient",   "summary": "Canopy fills. Forest has not distinguished any voice from another." },
     { "time": "19:20", "phase": "group-work",  "source": "timer",              "type": "timer.done",         "routing": "broadcast", "summary": "Timer expires; display flashes; group looks up." },
-    { "time": "19:28", "phase": "group-work",  "source": "smart-stage",        "type": "phase.demo.cue",     "routing": "broadcast", "summary": "Tech demo cue fires." },
+    { "time": "19:28", "phase": "group-work",  "source": "smart-stage",        "type": "phase.demo.cue",     "routing": "broadcast", "summary": "Labs & Demos cue fires." },
 
-    { "time": "19:30", "phase": "tech-demo",   "source": "smart-stage",        "type": "demo.mode",          "routing": "broadcast", "summary": "Tech-demo posture: Smart Stage holds attention but lowers footprint." },
+    { "time": "19:30", "phase": "tech-demo",   "source": "smart-stage",        "type": "demo.mode",          "routing": "broadcast", "summary": "Labs & Demos posture: Smart Stage holds attention but lowers footprint." },
     { "time": "19:34", "phase": "tech-demo",   "source": "nodcheck",           "type": "polled.opened",      "routing": "directed",  "target": "instructor",   "summary": "Instructor opens NodCheck for the question 'does this make sense?'" },
     { "time": "19:35", "phase": "tech-demo",   "source": "nodcheck",           "type": "nod.detected",       "routing": "directed",  "target": "instructor",   "summary": "First nod read." },
     { "time": "19:36", "phase": "tech-demo",   "source": "nodcheck",           "type": "shake.detected",     "routing": "directed",  "target": "instructor",   "summary": "First head-shake read." },

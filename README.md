@@ -21,7 +21,7 @@ Seven phases of a class session:
 3. **Lecture** — capture, attention, support (opt-in)
 4. **Break** — Gus appears
 5. **Group Work** — lab posture, surfaces, helpers
-6. **Tech Demo** — focused work, opt-in checks
+6. **Labs & Demos** — focused work, opt-in checks
 7. **Wrap** — dismissal
 
 Plus a closing thesis chapter and a credits page.
