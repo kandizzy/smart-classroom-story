@@ -73,7 +73,7 @@
     <p class="lede">
       What if a classroom was a multi-agent system? Not a room with computers in it &mdash; a room whose computation
       was distributed across cameras, code, and the people who walk in. Thirteen students, two instructors,
-      six cameras, one event bus. Over a semester, we built it. This is what one class looks like when the
+      six cameras, one event bus. Over a semester, we prototyped it. This is what one class looks like when the
       room is paying attention.
     </p>
     <p class="lede-runner">
@@ -99,16 +99,16 @@
 <section class="chapter">
   <div class="container">
     <p>
-      The room comes online before the people. <strong>Smart Stage</strong>, the room's brain, boots on a Raspberry&nbsp;Pi&nbsp;5,
-      polls the V-JEPA classifier sitting on a GPU machine across the network, and reads the schedule.
-      The room is empty; V-JEPA confirms it; the brain settles into a pre-arrival posture &mdash; ambient
-      music up, captions off, sensing quiet.
+      The room comes online before the people. <strong>Smart Stage</strong>, the room's orchestrator,
+      boots on a Raspberry&nbsp;Pi&nbsp;5, polls the V-JEPA classifier sitting on a GPU machine across
+      the network, and reads the schedule. The room is empty; V-JEPA confirms it; Smart Stage settles
+      into a pre-arrival posture &mdash; ambient music up, captions off, sensing quiet.
     </p>
     <p id="smart-stage">
       Gordon's <strong>Smart Stage</strong> absorbs much of what was originally scoped as a separate room-mode
       project: ambience that adapts to occupancy, music that knows the difference between an empty
       room and a room filling up. Yuxuan's and Seren's earlier explorations of those room-mode
-      transitions live inside the orchestrator now. The brain has multiple authors.
+      transitions live inside the orchestrator now. The room's brain has many authors.
     </p>
     <p id="forest">
       In the corner, Sophie's <strong>Forest in the Classroom</strong> seeds a faint generative landscape on the
@@ -120,8 +120,12 @@
       camera has handshake. Gus's appearance is scheduled for break, not now. The system knows to wait.
     </p>
     <p class="aside">
-      <em>What's missing from this state:</em> Smart Stage will fail gracefully if the V-JEPA server becomes
-      unreachable, holding music state and continuing other operations. We never tested this on a real outage.
+      In our first dive into world models, we found that training a V-JEPA probe was fast &mdash;
+      with some planning. Carrie trained one first at home, on herself in the office, then carried
+      those learnings into class, and in a short session with the students the classroom probe was
+      trained too. See the
+      <a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/v-jepa/VJEPA_SETUP.md">setup readme</a>
+      and the <a href="https://github.com/kandizzy/smart-objects-cameras/blob/main/v-jepa/CLASSROOM_CLIP_STRATEGY.md">clip-gathering strategy</a>.
     </p>
   </div>
 </section>
@@ -141,14 +145,25 @@
 <section class="chapter">
   <div class="container">
     <p>
+      The obvious first move with a multi-camera classroom would have been attendance &mdash; names
+      mapped to seats, presence logged, late arrivals flagged. The class steered away from it. Too
+      obvious, too boring, too much surveillance. What got built reads bodies as posture, not as
+      identity: bodies count as input for what kind of class is happening, not as a record of who
+      showed up. We joked: <em>more a vibe than a roster</em>.
+    </p>
+    <p>
       Three ceiling-mounted PoE cameras &mdash; left, right, and center-back of the room &mdash; produce the bird's-eye
       view that Gordon's <strong>overhead dashboard</strong> stitches into one canvas. YOLO6-nano runs on the
       Pi; blue calibration markers anchor the geometry. As students enter, dots appear on a flat plan of
       the room. The room knows there are people in it now.
     </p>
+    <figure class="figure figure-wide">
+      <img src="assets/artifacts/gordon-overhead-calibration.png" alt="Calibration view of Gordon's overhead dashboard: a top-down camera frame from one of three ceiling-mounted OAK-D-POE cameras, with three blue ArUco markers detected on a long classroom table. A side panel shows the marker counts for each camera and a 100% calibration-readiness gauge.">
+      <figcaption>Fig. 01 &nbsp;·&nbsp; Calibrating the overhead dashboard. Three ceiling cameras agree on the geometry through blue ArUco markers on the table; three out of three see at least two markers each. Gordon Cheng.</figcaption>
+    </figure>
     <p>
       Music fades. V-JEPA, polled every ten seconds, shifts its prediction from <em>empty</em> to <em>group&nbsp;work</em>
-      and then, as people sit, to <em>lecture</em>. The brain confirms lecture mode. The room hasn't been told
+      and then, as people sit, to <em>lecture</em>. Smart Stage confirms lecture mode. The room hasn't been told
       what to do; it has been told what it is.
     </p>
   </div>
@@ -169,7 +184,7 @@
 <section class="chapter">
   <div class="container">
     <p>
-      The brain pivots to lecture posture. Sherpa-onnx streaming ASR turns the instructor's voice into
+      Smart Stage pivots to lecture posture. Sherpa-onnx streaming ASR turns the instructor's voice into
       live captions, fed to a wall display and to a Discord channel as a rolling summary. This is
       <strong>Smart Stage</strong> doing what it was designed for &mdash; coordinating capture, voice synthesis, and
       ambient state from a single state machine, ~990 lines of Python on a Raspberry Pi.
@@ -194,7 +209,14 @@
     </p>
     <figure class="figure">
       <img src="assets/diagrams/feifey-focus-beam-diagram.jpg" alt="Diagram of Focus Beam: gesture detection feeding a slide region map and a dimming overlay.">
-      <figcaption>Fig. 01 &nbsp;·&nbsp; Focus Beam &mdash; speech and gesture into slide regions. Diagram by Feifey Wang.</figcaption>
+      <figcaption>Fig. 02 &nbsp;·&nbsp; Focus Beam &mdash; speech and gesture into slide regions. Diagram by Feifey Wang.</figcaption>
+    </figure>
+    <figure class="figure">
+      <video controls muted preload="metadata" playsinline>
+        <source src="assets/videos/feifey-focus-beam-demo.mp4" type="video/mp4">
+        Your browser does not support inline video. <a href="assets/videos/feifey-focus-beam-demo.mp4">Download the demo &rarr;</a>
+      </video>
+      <figcaption>Vid. 01 &nbsp;·&nbsp; Focus Beam &mdash; earliest working demo. The highlighted regions on the slide track Feifey's pointing gesture. Rough, but the mechanic is visible. Feifey Wang.</figcaption>
     </figure>
     <p id="assignment-tracker">
       Behind both, Shuyang's <strong>Assignment Tracker</strong> listens to the captions and the whiteboard for
@@ -242,14 +264,14 @@
     </p>
     <figure class="figure">
       <img src="assets/diagrams/kevin-mingyue-sleep-detection-diagram.jpg" alt="Hand-drawn diagram of Sleep Detection: camera reads drowsy state, system pings a designated friend, friend taps the sleeper.">
-      <figcaption>Fig. 02 &nbsp;·&nbsp; Sleep Detection &mdash; camera read, lateral notification, peer nudge. Diagram by Kevin &amp; Mingyue.</figcaption>
+      <figcaption>Fig. 03 &nbsp;·&nbsp; Sleep Detection &mdash; camera read, lateral notification, peer nudge. Diagram by Kevin &amp; Mingyue.</figcaption>
     </figure>
     <figure class="figure">
       <video controls muted preload="metadata" playsinline>
         <source src="assets/videos/kevin-mingyue-sleep-detection-demo.mp4" type="video/mp4">
         Your browser does not support inline video. <a href="assets/videos/kevin-mingyue-sleep-detection-demo.mp4">Download the demo &rarr;</a>
       </video>
-      <figcaption>Vid. 01 &nbsp;·&nbsp; Sleep Detection demo. Kevin &amp; Mingyue.</figcaption>
+      <figcaption>Vid. 02 &nbsp;·&nbsp; Sleep Detection demo. Kevin &amp; Mingyue.</figcaption>
     </figure>
     <p id="tony">
       Tony lives in the corner of the classroom &mdash; Ramon and Shuyang's classroom agent, an
@@ -276,7 +298,7 @@
     </p>
     <figure class="figure figure-wide">
       <img src="assets/diagrams/tony-interaction-flow.jpg" alt="Hand-drawn 7-panel storyboard: Tony scanning the room with YOLO, detecting a raised hand, turning to face the student, then mirroring the interaction across Discord channels.">
-      <figcaption>Fig. 09 &nbsp;·&nbsp; Tony's interaction flow &mdash; physical attention in the room, conversational threads on Discord. Storyboard by Ramon Naula &amp; Shuyang Tian.</figcaption>
+      <figcaption>Fig. 04 &nbsp;·&nbsp; Tony's interaction flow &mdash; physical attention in the room, conversational threads on Discord. Storyboard by Ramon Naula &amp; Shuyang Tian.</figcaption>
     </figure>
     <p id="grammar-coach">
       Yuxuan's <strong>English Communication Coach</strong>, called Lumi, holds quiet on a desk, ready for Q&amp;A.
@@ -300,14 +322,14 @@
     </p>
     <figure class="figure">
       <img src="assets/diagrams/yuxuan-english-communication-coach-diagram.jpeg" alt="Diagram of English Communication Coach: input through review through private feedback cards.">
-      <figcaption>Fig. 03 &nbsp;·&nbsp; English Communication Coach &mdash; transcript in, gentle private feedback out. Diagram by Yuxuan Chen.</figcaption>
+      <figcaption>Fig. 05 &nbsp;·&nbsp; English Communication Coach &mdash; transcript in, gentle private feedback out. Diagram by Yuxuan Chen.</figcaption>
     </figure>
     <figure class="figure">
       <video controls muted preload="metadata" playsinline>
         <source src="assets/videos/yuxuan-english-communication-coach-demo.mp4" type="video/mp4">
         Your browser does not support inline video. <a href="assets/videos/yuxuan-english-communication-coach-demo.mp4">Download the demo &rarr;</a>
       </video>
-      <figcaption>Vid. 02 &nbsp;·&nbsp; English Communication Coach prototype walkthrough. Yuxuan Chen.</figcaption>
+      <figcaption>Vid. 03 &nbsp;·&nbsp; English Communication Coach prototype walkthrough. Yuxuan Chen.</figcaption>
     </figure>
   </div>
 </section>
@@ -327,7 +349,7 @@
 <section class="chapter">
   <div class="container">
     <p>
-      The room exhales. Gordon's brain transitions ambience &mdash; music returns, captions stop. The break
+      The room exhales. Smart Stage transitions ambience &mdash; music returns, captions stop. The break
       is explicit; it is scheduled. And then, on the far wall, Gus appears. Not on a screen &mdash; the team
       segmented the rover's video and projected the dog onto the wall directly, so Gus reads as a
       window, not a feed.
@@ -340,7 +362,7 @@
     </blockquote>
     <figure class="figure">
       <img src="assets/artifacts/gus-appears-lead.jpeg" alt="Classroom on break: a projection screen on the left wall begins to light up with Gus the dog while three students sit at the long center table.">
-      <figcaption>Fig. 04 &nbsp;·&nbsp; Gus appears. Projection lighting up on the left wall; three students at the table mid-break.</figcaption>
+      <figcaption>Fig. 06 &nbsp;·&nbsp; Gus appears. Projection lighting up on the left wall; three students at the table mid-break.</figcaption>
     </figure>
     <p id="gus">
       The trio &mdash; Kathy, JuJu, Seren &mdash; built a two-location system: a Viam Rover 2 with a camera at
@@ -356,7 +378,7 @@
     </p>
     <figure class="figure figure-wide">
       <img src="assets/diagrams/juju-virtual-gus-diagram.png" alt="Diagram: Viam Rover camera stream, segmentation pipeline, projector to wall.">
-      <figcaption>Fig. 05 &nbsp;·&nbsp; The Gus pipeline. Viam Rover livestream, segmentation, projection. Diagram by JuJu Kim.</figcaption>
+      <figcaption>Fig. 07 &nbsp;·&nbsp; The Gus pipeline. Viam Rover livestream, segmentation, projection. Diagram by JuJu Kim.</figcaption>
     </figure>
     <p>
       Phil's <strong>Timer</strong> activates here too &mdash; it scopes the break. Magnetic arUco markers stuck to a foamcore
@@ -404,20 +426,30 @@
     </p>
     <figure class="figure">
       <img src="assets/diagrams/phil-timer-diagram.png" alt="Diagram of Timer: arUco tags, OAK-D detection, state machine, web display.">
-      <figcaption>Fig. 06 &nbsp;·&nbsp; Timer &mdash; arUco tags into countdown state. Diagram by Phil Cote.</figcaption>
+      <figcaption>Fig. 08 &nbsp;·&nbsp; Timer &mdash; arUco tags into countdown state. Diagram by Phil Cote.</figcaption>
     </figure>
     <figure class="figure">
       <video controls muted preload="metadata" playsinline>
         <source src="assets/videos/phil-timer-demo.mp4" type="video/mp4">
         Your browser does not support inline video. <a href="assets/videos/phil-timer-demo.mp4">Download the demo &rarr;</a>
       </video>
-      <figcaption>Vid. 03 &nbsp;·&nbsp; Timer in use &mdash; flipping arUco tags to set the countdown. Phil Cote.</figcaption>
+      <figcaption>Vid. 04 &nbsp;·&nbsp; Timer in use &mdash; flipping arUco tags to set the countdown. Phil Cote.</figcaption>
     </figure>
     <p>
-      Darren's <strong id="imprint">Imprint</strong> reads handwriting from any surface in the room and makes notes from it &mdash;
-      the kind of capability that only matters if it is genuinely surface-agnostic. Tony, in this
-      phase, shifts posture from observer to embodied helper. The same agent the room watched in
-      lecture is now something you can ask a question of. Same body, different role.
+      Darren's <strong id="imprint">Imprint</strong> reads handwriting from any surface in the room
+      and makes notes from it &mdash; the kind of capability that only matters if it is genuinely
+      surface-agnostic.
+    </p>
+    <figure class="figure">
+      <video controls muted preload="metadata" playsinline>
+        <source src="assets/videos/darren-imprint-demo.mp4" type="video/mp4">
+        Your browser does not support inline video. <a href="assets/videos/darren-imprint-demo.mp4">Download the demo &rarr;</a>
+      </video>
+      <figcaption>Vid. 05 &nbsp;·&nbsp; Imprint &mdash; capturing handwritten notes from a surface in the room. Darren Chia.</figcaption>
+    </figure>
+    <p>
+      Tony, in this phase, shifts posture from observer to embodied helper. The same agent the room
+      watched in lecture is now something you can ask a question of. Same body, different role.
     </p>
     <p>
       Sophie's Forest, dormant in lecture, reactivates: the more voices the room produces, the more
@@ -438,7 +470,7 @@
     </blockquote>
     <figure class="figure">
       <img src="assets/diagrams/sophie-forest-diagram.jpg" alt="Diagram of Forest in the Classroom: voices into a generative landscape that grows tree by tree.">
-      <figcaption>Fig. 07 &nbsp;·&nbsp; Forest in the Classroom &mdash; voices into a generative landscape. Diagram by Sophie Lee.</figcaption>
+      <figcaption>Fig. 09 &nbsp;·&nbsp; Forest in the Classroom &mdash; voices into a generative landscape. Diagram by Sophie Lee.</figcaption>
     </figure>
   </div>
 </section>
@@ -459,7 +491,7 @@
   <div class="container">
     <p>
       Demos and focused work share a phase. Smart Stage holds attention but lowers its own footprint &mdash;
-      the brain knows demos are not lectures, even when the speaker is at the podium. (The simulator
+      the room knows demos are not lectures, even when the speaker is at the podium. (The simulator
       flagged this as a place where the room can mis-infer; a body at the podium with the rest of the
       class seated reads identically as <em>lecture</em> from the camera angle.)
     </p>
@@ -493,6 +525,13 @@
       and physical &mdash; you don't have to interrupt, raise your hand, or admit anything in front of
       the room. You just nod or don't.
     </p>
+    <figure class="figure">
+      <video controls muted preload="metadata" playsinline>
+        <source src="assets/videos/kathy-nodcheck-demo.mp4" type="video/mp4">
+        Your browser does not support inline video. <a href="assets/videos/kathy-nodcheck-demo.mp4">Download the demo &rarr;</a>
+      </video>
+      <figcaption>Vid. 06 &nbsp;·&nbsp; NodCheck &mdash; nod and head-shake registering against an open question. Kathy Choi.</figcaption>
+    </figure>
     <p>
       What broke is the staging. The trigger button doesn't currently live anywhere useful for
       either students or instructor to reach. Multi-user sensing isn't built yet. The version Kathy
@@ -528,7 +567,7 @@
     </p>
     <figure class="figure">
       <img src="assets/artifacts/sophie-forest-vignette.jpg" alt="A dense projected forest of generative trees — Sophie's Forest at the end of a full classroom session of voices.">
-      <figcaption>Fig. 08 &nbsp;·&nbsp; The forest grows by the voice. Captured by Sophie Lee.</figcaption>
+      <figcaption>Fig. 10 &nbsp;·&nbsp; The forest grows by the voice. Captured by Sophie Lee.</figcaption>
     </figure>
   </div>
 </section>
@@ -561,7 +600,23 @@
       different context.
     </p>
     <p>
-      The orchestrator and the full scope of each project are still in the design/prototype stage.
+      V-JEPA, YOLO, MediaPipe, Sherpa-onnx, Groq, and large segmentation networks do the heavy
+      lifting. The room-specific work is thin: a V-JEPA probe that tells apart <em>empty</em>,
+      <em>lecture</em>, <em>group&nbsp;work</em>, <em>break</em>; a Gus segmentation trained on a
+      few hundred annotated frames. Custom layers standing on the shoulders of foundational scaffolding.
+    </p>
+    <figure class="figure">
+      <img src="assets/artifacts/gus-model.png" alt="A polygon-annotation interface — Smart Select mode — showing one frame of the rover stream of Gus the dog being labeled with the 'gus' class.">
+      <figcaption>Fig. 11 &nbsp;·&nbsp; Training the Gus segmentation: one frame of the Viam Rover stream being polygon-labeled with the <em>gus</em> class. JuJu Kim, Kathy Choi, Seren Kim.</figcaption>
+    </figure>
+    <p>
+      The room's brain isn't located. It's a society of small minds &mdash; perception agents,
+      reactive agents, human agents &mdash; running on the same bus. No single piece knows the room;
+      the room knows itself by their cooperation.
+    </p>
+    <p>
+      The cross-project conductor &mdash; an agent above the agents, routing between them by
+      context &mdash; and the full scope of each project are still in the design/prototype stage.
       <a href="simulator.html">Watch a simulation &rarr;</a>
     </p>
     <ul class="links">
@@ -626,6 +681,7 @@
           <li><a href="https://github.com/ccheng2-commits/so-smart-stage">so-smart-stage</a> &mdash; Smart Stage orchestrator</li>
           <li><a href="https://github.com/ccheng2-commits/so-vjepa-probe">so-vjepa-probe</a> &mdash; V-JEPA classifier server</li>
           <li><a href="https://github.com/ccheng2-commits/so-overhead-dashboard">so-overhead-dashboard</a> &mdash; bird's-eye person tracking</li>
+          <li><a href="https://github.com/katcheee/NodCheck">NodCheck</a> &mdash; Kathy's nod/head-shake comprehension check</li>
         </ul>
       </div>
 
