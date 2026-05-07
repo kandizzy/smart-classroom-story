@@ -34,13 +34,6 @@ Plus a closing thesis chapter and a credits page.
 - [Whitepaper](https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/multi-agent-classroom.md) — the architectural argument
 - [References](https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/references.md) — bibliography for the whitepaper
 
-Smart Stage spans three repositories of its own:
-
-- [so-smart-stage](https://github.com/ccheng2-commits/so-smart-stage) — Pi 5 orchestrator
-- [so-vjepa-probe](https://github.com/ccheng2-commits/so-vjepa-probe) — V-JEPA classifier server
-- [so-overhead-dashboard](https://github.com/ccheng2-commits/so-overhead-dashboard) — bird's-eye person tracking
-- [NodCheck](https://github.com/katcheee/NodCheck) — Kathy's nod/head-shake comprehension check
-
 ## Contributors
 
 **Students:** Darren Chia, Feifey Wang, Gordon Cheng, JuJu Kim, Kathy Choi, Phil Cote, Ramon Naula, Seren Kim, Shuyang Tian, Sophie Lee, Yuxuan Chen
