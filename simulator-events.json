@@ -26,7 +26,7 @@
     { "id": "grammar-coach",      "label": "English Communication Coach", "students": ["Yuxuan Chen"] },
     { "id": "gus-mode",           "label": "Gus Mode",                    "students": ["JuJu Kim", "Kathy Choi", "Seren Kim"] },
     { "id": "timer",              "label": "Timer",                       "students": ["Phil Cote"] },
-    { "id": "imprint",            "label": "Imprint",                     "students": ["Darren Chia"] },
+    { "id": "inprint",            "label": "Inprint",                     "students": ["Darren Chia"] },
     { "id": "nodcheck",           "label": "NodCheck",                    "students": ["Kathy Choi"] }
   ],
   "events": [
@@ -68,8 +68,8 @@
     { "time": "18:33", "phase": "group-work",  "source": "smart-stage",        "type": "ambience.shift",     "routing": "ambient",   "summary": "Lighting and music shift to lab posture." },
     { "time": "18:35", "phase": "group-work",  "source": "timer",              "type": "tag.detected",       "routing": "directed",  "target": "timer",        "summary": "Bruno places the play arUco tag at 15 minutes; Horizon reads it." },
     { "time": "18:36", "phase": "group-work",  "source": "timer",              "type": "timer.started",      "routing": "broadcast", "summary": "Timer running. Display visible to the group." },
-    { "time": "18:42", "phase": "group-work",  "source": "imprint",            "type": "handwriting.read",   "routing": "ambient",   "summary": "Imprint captures handwriting from the surface near the whiteboard." },
-    { "time": "18:48", "phase": "group-work",  "source": "imprint",            "type": "note.saved",         "routing": "broadcast", "summary": "Captured notes saved; available to all subscribers." },
+    { "time": "18:42", "phase": "group-work",  "source": "inprint",            "type": "handwriting.read",   "routing": "ambient",   "summary": "Inprint captures handwriting from the surface near the whiteboard." },
+    { "time": "18:48", "phase": "group-work",  "source": "inprint",            "type": "note.saved",         "routing": "broadcast", "summary": "Captured notes saved; available to all subscribers." },
     { "time": "18:55", "phase": "group-work",  "source": "forest",             "type": "voice.energy",       "routing": "ambient",   "summary": "Sustained voices grow the projected forest." },
     { "time": "19:05", "phase": "group-work",  "source": "tony",               "type": "helper.summoned",    "routing": "directed",  "target": "tony",         "summary": "A student calls Tony over. Tony shifts from observer to embodied helper." },
     { "time": "19:18", "phase": "group-work",  "source": "forest",             "type": "canopy.dense",       "routing": "ambient",   "summary": "Canopy fills. Forest has not distinguished any voice from another." },
