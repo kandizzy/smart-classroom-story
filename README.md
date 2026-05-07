@@ -32,7 +32,6 @@ Plus a closing thesis chapter and a credits page.
 
 - [Source repo](https://github.com/kandizzy/smart-objects-cameras) — class template, detectors, classroom API, all student work
 - [Whitepaper](https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/multi-agent-classroom.md) — the architectural argument
-- [Network diagram](https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/diagrams/network-diagram.html) — interactive topology of the classroom
 - [References](https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/references.md) — bibliography for the whitepaper
 
 Smart Stage spans three repositories of its own:
