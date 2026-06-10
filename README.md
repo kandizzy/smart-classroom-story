@@ -34,6 +34,11 @@ Plus a closing thesis chapter and a credits page.
 - [Whitepaper](https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/multi-agent-classroom.md) — the architectural argument
 - [References](https://github.com/kandizzy/smart-objects-cameras/blob/main/docs/whitepaper/references.md) — bibliography for the whitepaper
 
+## For students
+
+Want to document your own project the same way? See the guide:
+[Build your own project documentation site (with Claude)](guides/build-your-own-doc-site.md).
+
 ## Contributors
 
 **Students:** Darren Chia, Feifey Wang, Gordon Cheng, JuJu Kim, Kathy Choi, Phil Cote, Ramon Naula, Seren Kim, Shuyang Tian, Sophie Lee, Yuxuan Chen
